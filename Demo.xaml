@@ -1,0 +1,43 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SocialBladeDashboard"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="SocialBladeDashboard.Demo"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <TextBox Name="txtMemberId" Visibility="Hidden" Text="0"/>
+        <Label Content="Name :" HorizontalAlignment="Left" Margin="39,135,0,0" VerticalAlignment="Top" Width="51"/>
+        <TextBox HorizontalAlignment="Left"  Name="txtName"  Margin="105,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Age :"  HorizontalAlignment="Left" Margin="39,180,0,0" VerticalAlignment="Top" Width="51"/>
+        <TextBox HorizontalAlignment="Left" Name="txtAge"  Margin="105,179,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Mobile :"  HorizontalAlignment="Left" Margin="39,227,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Name="txtMobile"  Margin="105,225,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="dgMembers" Margin="287,133,29,45"
+                  xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
+                  CanUserAddRows="True"
+                  ItemsSource="{Binding}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Age" Binding="{Binding Path=Age}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Mobile" Binding="{Binding Path=Mobile}" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="Edit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="btnEdit_Click"
+                                    Loaded="Visibility_Check"
+                                    >Edit</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="39,269,0,0" VerticalAlignment="Top" Width="186" Click="BtnSave_Click"/>
+        <Button Content="Load Members" HorizontalAlignment="Left" Background="Blue" Margin="39,306,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.042,-0.573" Height="33" Width="186" Click="Load_Members"/>
+        <TextBlock Foreground="Red" Name="ErrMsg" HorizontalAlignment="Left" Margin="41,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="184"/>
+
+    </Grid>
+</UserControl>
